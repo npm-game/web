@@ -1,0 +1,24 @@
+//noinspection CssUnknownTarget
+@import "~root/styles/meta";
+
+nav.navbar {
+    z-index: 500;
+
+    @include navbar-height();
+
+    .navbar-brand {
+        margin-left: 30px;
+        margin-right: 60px;
+
+        .brand-name {
+            margin: 0;
+        }
+    }
+
+    .nav-item {
+        .nav-link {
+            padding: 10px 20px;
+            margin: 0 8px;
+        }
+    }
+}

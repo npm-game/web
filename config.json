@@ -1,0 +1,8 @@
+{
+  "development": {
+    "ApiPath": "http://localhost:43222"
+  },
+  "production": {
+    "ApiPath": "http://localhost:43222"
+  }
+}
