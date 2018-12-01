@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "importHelpers": true,
+    "module": "es2015",
+    "moduleResolution": "node",
+    "noEmitOnError": false,
+    "noImplicitAny": true,
+    "pretty": true,
+    "removeComments": true,
+    "sourceMap": true,
+    "target": "ES5",
+    "lib": [
+      "dom",
+      "scripthost",
+      "es5",
+      "es6",
+      "es7"
+    ],
+    "rootDir": "./src",
+    "typeRoots": [
+      "./node_modules/@types"
+    ]
+  }
+}
