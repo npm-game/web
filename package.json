@@ -15,6 +15,7 @@
   "license": "MIT",
   "dependencies": {
     "@albavulpes/ui-core": "https://github.com/albavulpes/ui-core",
+    "@aspnet/signalr": "^1.1.0",
     "axios": "^0.18.0",
     "bootstrap": "^4.1.1",
     "bootswatch": "^4.1.1",
