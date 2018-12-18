@@ -6,16 +6,30 @@
 
         <hr>
 
+        <button type="button" class="btn btn-outline-primary" @click="JoinGame">
+            Join Game
+        </button>
+
+        <button type="button" class="btn btn-primary" @click="StartGame">
+            Start Game
+        </button>
+
+        <hr>
+
         <div class="row">
             <div class="col">
-                <pre>
-                    {{Game}}
-                </pre>
+                <div class="card">
+                    <div class="card-body">
+                        <pre class="m-0">{{Game}}</pre>
+                    </div>
+                </div>
             </div>
             <div class="col">
-                <pre>
-                    {{GameLog.join('\n')}}
-                </pre>
+                <div class="card">
+                    <div class="card-body">
+                        <pre class="m-0">{{GameLog.join('\n')}}</pre>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

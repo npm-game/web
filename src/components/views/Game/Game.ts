@@ -4,6 +4,8 @@ import {Component} from 'vue-property-decorator';
 import axios from 'axios';
 import * as signalr from '@aspnet/signalr';
 
+axios.defaults.withCredentials = true;
+
 @Component
 export default class extends Vue {
 
@@ -19,7 +21,7 @@ export default class extends Vue {
     async created() {
         // Log In
         await axios.post(AppConfig.ApiPath + '/auth/login', {
-            Email: 'npmgame',
+            Email: 'admin',
             Password: 'asdfghjkl'
         });
 
@@ -48,7 +50,9 @@ export default class extends Vue {
     async JoinGame() {
         const gameResponse = await axios.get(AppConfig.ApiPath + '/games/current');
 
-        await this.Connection.invoke('JoinGame', gameResponse.data.Id);
+        this.Game = gameResponse.data;
+
+        await this.Connection.invoke('JoinGame', this.Game.Id);
     }
 
     async StartGame() {
