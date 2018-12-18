@@ -6,9 +6,11 @@ import * as RoutingHooks from './Hooks';
 import App from '../../components/App.vue';
 
 import home from './routes/home';
+import game from './routes/game';
 
 const routes: RouteConfig[] = [
-    home
+    home,
+    game
 ];
 
 export function mount(): void {
