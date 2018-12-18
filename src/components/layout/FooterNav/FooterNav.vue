@@ -13,7 +13,7 @@
                 &copy; {{new Date().getFullYear()}} npm-game. All rights reserved.
             </div>
             <div class="col-auto">
-                Maintained by <a href="https://github.com/cypherix93">cypherix93</a> & <a href="https://github.com/benstrumeyer">benstrumeyer</a>
+                Maintained by <a href="https://github.com/cypherix93">cypherix93</a>
             </div>
         </div>
     </div>
