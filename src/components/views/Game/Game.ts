@@ -1,10 +1,9 @@
 import Vue from 'vue';
 import {Component} from 'vue-property-decorator';
 
-import axios from 'axios';
 import * as signalr from '@aspnet/signalr';
 
-axios.defaults.withCredentials = true;
+import {api} from '../../../scripts/api';
 
 @Component
 export default class extends Vue {
@@ -20,13 +19,13 @@ export default class extends Vue {
 
     async created() {
         // Log In
-        await axios.post(AppConfig.ApiPath + '/auth/login', {
+        await api.auth.login({
             Email: 'admin',
             Password: 'asdfghjkl'
         });
 
         // Show identity
-        const idResponse = await axios.get(AppConfig.ApiPath + '/auth/me');
+        const idResponse = await api.auth.me();
         this.Identity = idResponse.data;
 
         // Establish connection
@@ -48,7 +47,7 @@ export default class extends Vue {
     }
 
     async JoinGame() {
-        const gameResponse = await axios.get(AppConfig.ApiPath + '/games/current');
+        const gameResponse = await api.games.current();
 
         this.Game = gameResponse.data;
 
