@@ -4,6 +4,7 @@ import {Component} from 'vue-property-decorator';
 import * as signalr from '@aspnet/signalr';
 
 import {api} from '../../../scripts/api';
+import {GameSessionStore} from '../../../scripts/stores/games/GameSessionStore';
 
 @Component
 export default class extends Vue {
@@ -11,9 +12,6 @@ export default class extends Vue {
     Identity: any = null;
 
     Connection: signalr.HubConnection = null;
-
-    Game: any = null;
-    GameLog: string[] = [];
 
     IsReady: boolean = false;
 
@@ -25,36 +23,36 @@ export default class extends Vue {
         });
 
         // Show identity
-        const idResponse = await api.auth.me();
-        this.Identity = idResponse.data;
+        this.Identity = await api.auth.me();
 
-        // Establish connection
-        this.Connection = new signalr.HubConnectionBuilder()
-            .withUrl(AppConfig.ApiPath + '/games')
-            .build();
-
-        this.Connection.on('game:log', (message: string) => {
-            this.GameLog.push(message);
-        });
-
-        this.Connection.on('game:update', (game) => {
-            this.Game = game;
-        });
-
-        await this.Connection.start();
+        await GameSessionStore.dispatch('init');
 
         this.IsReady = true;
+    }
+
+    get Game() {
+        return GameSessionStore.state.Game;
+    }
+
+    get GameLog() {
+        return GameSessionStore.state.GameLog;
     }
 
     async JoinGame() {
         const gameResponse = await api.games.current();
 
-        this.Game = gameResponse.data;
-
-        await this.Connection.invoke('JoinGame', this.Game.Id);
+        await GameSessionStore.dispatch('joinGame', gameResponse.Id);
     }
 
     async StartGame() {
-        await this.Connection.invoke('StartGame');
+        await GameSessionStore.state.Connection.invoke('StartGame');
+    }
+
+    WordPlayed: string = null;
+
+    async SubmitWord() {
+        await GameSessionStore.state.Connection.invoke('TakeTurn', {
+            WordGuessed: this.WordPlayed
+        });
     }
 }

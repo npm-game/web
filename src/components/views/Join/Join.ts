@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import {Component, Prop} from 'vue-property-decorator';
 import {api} from '../../../scripts/api';
+import {GameSessionStore} from '../../../scripts/stores/games/GameSessionStore';
 
 @Component
 export default class extends Vue {
@@ -14,5 +15,9 @@ export default class extends Vue {
             Email: 'player',
             Password: 'asdfghjkl'
         });
+
+        await GameSessionStore.dispatch('init');
+
+        await GameSessionStore.dispatch('joinGame', this.InviteToken);
     }
 }

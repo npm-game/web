@@ -7,10 +7,12 @@ import App from '../../components/App.vue';
 
 import home from './routes/home';
 import game from './routes/game';
+import join from './routes/join';
 
 const routes: RouteConfig[] = [
     home,
-    game
+    game,
+    join
 ];
 
 export function mount(): void {

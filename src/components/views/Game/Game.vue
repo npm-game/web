@@ -23,6 +23,21 @@
                         <pre class="m-0">{{Game}}</pre>
                     </div>
                 </div>
+                <div class="card mt-2">
+                    <div class="card-body">
+                        <form @submit.prevent="SubmitWord">
+                            <div class="form-group">
+                                <label>
+                                    Enter word
+                                    <input class="form-control" type="text" placeholder="Your guess" v-model="WordPlayed">
+                                </label>
+                            </div>
+                            <button type="submit" class="btn btn-primary">
+                                Submit
+                            </button>
+                        </form>
+                    </div>
+                </div>
             </div>
             <div class="col">
                 <div class="card">
